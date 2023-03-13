@@ -14,11 +14,15 @@ function getComputerChoice() {
     }
 }
 
-function playRound(computerSelection, playerSelection) {
-    const playerSelectionLowerCase = playerSelection.toLowerCase();
+function playRound(playerChoice) {
+    const playerSelectionLowerCase = playerChoice.toLowerCase();
+    const computerSelection = getComputerChoice();
 
     if(computerSelection == playerSelectionLowerCase)
+    {
+        console.log("You Draw!");
         return ["You Draw!", 2];
+    }
     else if(playerSelectionLowerCase == "rock" && computerSelection == "paper")
         return ["You Lose! Paper beats Rock", 0];
     else if(playerSelectionLowerCase == "rock" && computerSelection == "scissors")
@@ -68,4 +72,7 @@ function game() {
         console.log(`Game Draw! ${playerScore} to ${computerScore}`);
 }
 
-game();
+const buttons = document.querySelectorAll(`button[data-type]`);
+buttons.forEach(button => button.addEventListener("click", () => {
+    playRound(button.dataset.type);
+}));
