@@ -15,10 +15,53 @@ function getComputerChoice() {
 }
 
 function adjustScore(value) {
+    switch (value) {
+        case 0:
+            break;
+        case 1:
+            playerScore++;
+            break;
+        case 2:
+            computerScore++;
+            break;
+        default:
+            console.error("INVALID SCORE ADJUSTMENT");
+            break;
+    }
 
+    updateScoreUI();
+}
+
+function updateScoreUI() {
+    const pScore = document.querySelector('.playerScore');
+    const cScore = document.querySelector('.computerScore');
+    pScore.textContent = `Player: ${playerScore}`;
+    cScore.textContent = `Computer: ${computerScore}`;
+}
+
+function checkVictor()
+{
+    if(playerScore == 5)
+    {
+        gameOver = true;
+        const container = document.querySelector('.resultsContainer');
+        const para = document.createElement("p");
+        para.textContent = "GAME OVER! Player Wins!";
+        container.appendChild(para);
+    }
+    else if(computerScore == 5)
+    {
+        gameOver = true;
+        const container = document.querySelector('.resultsContainer');
+        const para = document.createElement("p");
+        para.textContent = "GAME OVER! Computer Wins!";
+        container.appendChild(para);
+    }
 }
 
 function playRound(playerChoice) {
+    if(gameOver) return;
+
     const playerSelectionLowerCase = playerChoice.toLowerCase();
     const computerSelection = getComputerChoice();
     const container = document.querySelector('.resultsContainer');
@@ -65,6 +108,7 @@ function playRound(playerChoice) {
     }
 
     container.appendChild(para);
+    checkVictor();
 }
 
 function game() {
@@ -99,6 +143,10 @@ function game() {
     else
         console.log(`Game Draw! ${playerScore} to ${computerScore}`);
 }
+
+let playerScore = 0;
+let computerScore = 0;
+let gameOver = false;
 
 const buttons = document.querySelectorAll(`button[data-type]`);
 buttons.forEach(button => button.addEventListener("click", () => {
