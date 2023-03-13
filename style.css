@@ -1,0 +1,30 @@
+* {
+    background-color: aquamarine;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 500px;
+    padding: 0px;
+    margin: 0px;
+}
+
+.buttonContainer {
+    display: flex;
+    gap: 10px;
+}
+
+.button {
+    background-color: blueviolet;
+    font-size: 32px;
+    color: white;
+}
+
+.resultsContainer {
+    display: flex;
+    flex-direction: vertical;
+    padding-left: 20px;
+    font-size: 18px;
+}
