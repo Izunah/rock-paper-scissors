@@ -14,29 +14,57 @@ function getComputerChoice() {
     }
 }
 
+function adjustScore(value) {
+
+}
+
 function playRound(playerChoice) {
     const playerSelectionLowerCase = playerChoice.toLowerCase();
     const computerSelection = getComputerChoice();
+    const container = document.querySelector('.resultsContainer');
+    const para = document.createElement("p");
 
     if(computerSelection == playerSelectionLowerCase)
     {
-        console.log("You Draw!");
-        return ["You Draw!", 2];
+        para.textContent = "You Draw!";
+        adjustScore(0);
     }
     else if(playerSelectionLowerCase == "rock" && computerSelection == "paper")
-        return ["You Lose! Paper beats Rock", 0];
+    {
+        para.textContent = "You Lose! Paper beats Rock";
+        adjustScore(2);
+    }
     else if(playerSelectionLowerCase == "rock" && computerSelection == "scissors")
-        return ["You Win! Rock beats Scissors", 1];
+    {
+        para.textContent = "You Win! Rock beats Scissors";
+        adjustScore(1);
+    }
     else if(playerSelectionLowerCase == "paper" && computerSelection == "rock")
-        return ["You Win! Paper beats Rock", 1];
+    {
+        para.textContent = "You Win! Paper beats Rock";
+        adjustScore(1);
+    }
     else if(playerSelectionLowerCase == "paper" && computerSelection == "scissors")
-        return ["You Lose! Scissors beats Paper", 0];
+    {
+        para.textContent = "You Lose! Scissors beats Paper";
+        adjustScore(2);
+    }
     else if(playerSelectionLowerCase == "scissors" && computerSelection == "rock")
-        return ["You Lose! Rock beats Scissors", 0];
+    {
+        para.textContent = "You Lose! Rock beats Scissors";
+        adjustScore(2);
+    }
     else if(playerSelectionLowerCase == "scissors" && computerSelection == "paper")
-        return ["You Win! Scissors beats Paper", 1];
+    {
+        para.textContent = "You Win! Scissors beats Paper";
+        adjustScore(1);
+    }
     else
-        return ["ERROR, INVALID COMBINATION", -1];
+    {
+        para.textContent = "!!ERROR!!";
+    }
+
+    container.appendChild(para);
 }
 
 function game() {
